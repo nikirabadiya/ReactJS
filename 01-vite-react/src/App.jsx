@@ -1,5 +1,12 @@
+import Test from "./test";
+
 function App() {
-	return <h1>Namaste</h1>;
+	return (
+		<>
+			<Test />
+			<p>test para</p>
+		</>
+	);
 }
 
 export default App;
