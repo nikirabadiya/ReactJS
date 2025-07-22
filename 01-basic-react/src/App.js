@@ -1,9 +1,9 @@
-import Test from "./Test";
+import Test from "./test";
 function App() {
 	return (
 		<>
 			<Test />
-			<p>testing the pata</p>
+			<p>testing the para</p>
 		</>
 	);
 }
