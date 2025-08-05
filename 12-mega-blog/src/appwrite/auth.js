@@ -46,8 +46,11 @@ export class AuthService {
 		try {
 			return await this.account.get();
 		} catch (error) {
-			console.error(error);
-			throw error;
+			if (error.code === 401) {
+				console.log("User not logged in");
+			} else {
+				console.error("Error fetching user:", error);
+			}
 		}
 
 		return null;
