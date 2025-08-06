@@ -113,11 +113,11 @@ export class Service {
 		}
 	}
 
-	previewFile(fileId) {
+	getFilePreview(fileId) {
 		return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
 	}
 
-	downloadFile(fileId) {
+	getFileDownload(fileId) {
 		return this.bucket.getFileDownload(conf.appwriteBucketId, fileId);
 	}
 }
