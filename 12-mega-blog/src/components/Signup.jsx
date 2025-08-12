@@ -15,10 +15,10 @@ function Signup() {
 	const signup = async (data) => {
 		setError("");
 		try {
-			const userData = await authService.createAccount(data);
+			const { userData } = await authService.createAccount(data);
 			if (userData) {
 				const userData = authService.getCurrentUser();
-				if (userData) dispatch(login(userData));
+				if (userData) dispatch(login({ userData }));
 				navigate("/");
 			}
 		} catch (error) {
@@ -74,7 +74,9 @@ function Signup() {
 						</Button>
 					</div>
 				</form>
-				{error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+				{error && (
+					<p className="text-sm text-red-600 mt-3 text-center">{error}</p>
+				)}
 				<p className="mt-4 text-center text-base text-black/60">
 					Already have an account?&nbsp;
 					<Link

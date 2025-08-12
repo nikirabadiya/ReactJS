@@ -18,11 +18,13 @@ function Login() {
 			const session = await authService.login(data);
 			if (session) {
 				const userData = await authService.getCurrentUser();
-				if (userData) dispatch(authLogin(userData));
+				if (userData) dispatch(authLogin({ userData }));
 				navigate("/");
+			} else {
+				setError("Login failed. Please try again.");
 			}
 		} catch (error) {
-			setError(error.message);
+			setError(error.message || "Login failed");
 		}
 	};
 
@@ -67,7 +69,9 @@ function Login() {
 						</Button>
 					</div>
 				</form>
-				{error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+				{error && (
+					<p className="text-sm text-red-600 mt-3 text-center">{error}</p>
+				)}
 				<p className="mt-4 text-center text-base text-black/60">
 					Don&apos;t have any account?&nbsp;
 					<Link

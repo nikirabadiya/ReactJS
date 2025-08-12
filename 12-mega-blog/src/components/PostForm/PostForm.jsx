@@ -17,7 +17,7 @@ function PostForm({ post }) {
 			},
 		});
 
-	const userData = useSelector((state) => state.user.userData);
+	const userData = useSelector((state) => state.auth.userData);
 
 	const submit = async (data) => {
 		if (post) {
@@ -57,7 +57,7 @@ function PostForm({ post }) {
 	};
 
 	const slugTransform = useCallback((value) => {
-		if (value && value.typeof === "string") {
+		if (value && typeof value === "string") {
 			return value
 				.trim()
 				.toLowerCase()

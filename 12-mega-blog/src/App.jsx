@@ -22,7 +22,7 @@ function App() {
 			})
 			.catch(() => dispatch(logout()))
 			.finally(() => setLoading(false));
-	}, []);
+	}, [dispatch]);
 
 	return !loading ? (
 		<div className="min-h-screen flex flex-wrap content-between bg-gray-100">
