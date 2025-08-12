@@ -4,7 +4,7 @@ import { Logo } from "../index.js";
 
 function Footer() {
 	return (
-		<section className="relative overflow-hidden py-10 bg-gray-400 border border-t-2 border-t-black">
+		<footer className="relative overflow-hidden py-8 bg-white shadow-[0_-1px_3px_rgba(0,0,0,0.1),0_-1px_2px_-1px_rgba(0,0,0,0.1)]">
 			<div className="relative z-10 mx-auto max-w-7xl px-4">
 				<div className="-m-6 flex flex-wrap">
 					<div className="w-full p-6 md:w-1/2 lg:w-5/12">
@@ -136,7 +136,7 @@ function Footer() {
 					</div>
 				</div>
 			</div>
-		</section>
+		</footer>
 	);
 }
 
