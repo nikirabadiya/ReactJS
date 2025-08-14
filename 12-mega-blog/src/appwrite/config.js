@@ -1,5 +1,13 @@
 import conf from "../conf/conf";
-import { Client, ID, Databases, Storage, Query } from "appwrite";
+import {
+	Client,
+	ID,
+	Databases,
+	Storage,
+	Query,
+	Permission,
+	Role,
+} from "appwrite";
 
 export class Service {
 	client = new Client();
@@ -93,9 +101,11 @@ export class Service {
 	// file upload service
 	async uploadFile(file) {
 		try {
-			return (
-				await this,
-				this.bucket.createFile(conf.appwriteBucketId, ID.unique(), file)
+			return await this.bucket.createFile(
+				conf.appwriteBucketId,
+				ID.unique(),
+				file,
+				[Permission.read(Role.any())]
 			);
 		} catch (error) {
 			console.error(error);
@@ -105,7 +115,7 @@ export class Service {
 
 	async deleteFile(fileId) {
 		try {
-			await this, this.bucket.deleteFile(conf.appwriteBucketId, fileId);
+			await this.bucket.deleteFile(conf.appwriteBucketId, fileId);
 			return true;
 		} catch (error) {
 			console.error(error);
@@ -114,6 +124,10 @@ export class Service {
 	}
 
 	getFilePreview(fileId) {
+		if (!fileId) {
+			console.warn("getFilePreview called with null/undefined fileId");
+			return null; // or return a placeholder image URL
+		}
 		return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
 	}
 
