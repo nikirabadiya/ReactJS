@@ -22,6 +22,17 @@ export class Service {
 		this.bucket = new Storage(this.client);
 	}
 
+	async checkFilePermissions(fileId) {
+		try {
+			const file = await this.bucket.getFile(conf.appwriteBucketId, fileId);
+			console.log("File permissions:", file.$permissions);
+			return file.$permissions;
+		} catch (error) {
+			console.error("Error checking file permissions:", error);
+			return null;
+		}
+	}
+
 	async createPost({ title, slug, content, featuredImage, status, userId }) {
 		try {
 			return await this.databases.createDocument(
@@ -128,7 +139,7 @@ export class Service {
 			console.warn("getFilePreview called with null/undefined fileId");
 			return null; // or return a placeholder image URL
 		}
-		return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
+		return this.bucket.getFileView(conf.appwriteBucketId, fileId);
 	}
 
 	getFileDownload(fileId) {
